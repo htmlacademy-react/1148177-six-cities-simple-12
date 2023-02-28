@@ -1,6 +1,6 @@
 # Личный проект «Шесть городов (простой)»
 
-* Студент: [Амасия Арутюнян](https://up.htmlacademy.ru/react/12/user/1148177).
+* Студент: [Max Arutyunyan](https://up.htmlacademy.ru/react/12/user/1148177).
 * Наставник: `Неизвестно`.
 
 ---
