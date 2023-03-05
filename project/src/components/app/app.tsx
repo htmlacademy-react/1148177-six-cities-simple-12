@@ -1,7 +1,9 @@
 import { Main } from '../../pages/main';
 
-function App(): JSX.Element {
-  return <Main offer={312} />;
-}
+export type AppProps = {
+  offers: number;
+};
 
-export default App;
+export function App({ offers }: AppProps) {
+  return <Main offers={offers} />;
+}

@@ -1,7 +1,7 @@
 import { Card } from '../../components/card';
 
 export type MainProps = {
-  offer: number;
+  offers: number;
 };
 
 const hotels = [
@@ -47,7 +47,7 @@ const hotels = [
   },
 ];
 
-export function Main({ offer }: MainProps) {
+export function Main({ offers }: MainProps) {
   return (
     <body className="page page--gray page--main">
       <div style={{ display: 'none' }}>
@@ -76,7 +76,10 @@ export function Main({ offer }: MainProps) {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link header__logo-link--active" href="!#">
+              <a
+                className="header__logo-link header__logo-link--active"
+                href="!#"
+              >
                 <img
                   className="header__logo"
                   src={'img/logo.svg'}
@@ -128,7 +131,10 @@ export function Main({ offer }: MainProps) {
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active" href="!#">
+                <a
+                  className="locations__item-link tabs__item tabs__item--active"
+                  href="!#"
+                >
                   <span>Amsterdam</span>
                 </a>
               </li>
@@ -150,7 +156,7 @@ export function Main({ offer }: MainProps) {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {offer} places to stay in Amsterdam
+                {offers} places to stay in Amsterdam
               </b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
