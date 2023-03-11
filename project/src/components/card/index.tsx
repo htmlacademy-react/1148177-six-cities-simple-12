@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export type CardProps = {
   previewImage: string;
   price: number;
@@ -21,7 +23,7 @@ export function Card({
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="!#">
+        <Link to="/">
           <img
             className="place-card__image"
             src={previewImage}
@@ -29,7 +31,7 @@ export function Card({
             height="200"
             alt={title}
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -45,7 +47,7 @@ export function Card({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="!#">{title}</a>
+          <Link to="/">{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
