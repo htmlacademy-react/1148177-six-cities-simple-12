@@ -15,7 +15,7 @@ function RoomGallery({ offer }: PropertyGalleryProps) {
             <img
               className="property__image"
               src={image}
-              alt="Photo studio"
+              alt={offer.title}
               aria-hidden
             />
           </div>

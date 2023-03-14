@@ -9,3 +9,10 @@ export function emptyClass(offers: Array<OfferItem>) {
 export function firstLetterUpper(str: string) {
   return str[0].toUpperCase() + str.slice(1);
 }
+
+export function formatDate(date: string, locales = 'en-US') {
+  return new Date(date).toLocaleString(locales, {
+    month: 'long',
+    year: 'numeric',
+  });
+}

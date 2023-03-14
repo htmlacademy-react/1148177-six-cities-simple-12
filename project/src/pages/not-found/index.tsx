@@ -20,7 +20,7 @@ function NotFound(): JSX.Element {
                   className="locations__item-link tabs__item tabs__item--active"
                   style={{ fontStyle: 'normal' }}
                 >
-                  Вернуться на главную
+                  Go back to the main page
                 </Link>
               </div>
             </section>

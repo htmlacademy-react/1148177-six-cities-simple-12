@@ -1,4 +1,4 @@
-function Reviews(): JSX.Element {
+function ReviewForm(): JSX.Element {
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
@@ -115,4 +115,4 @@ function Reviews(): JSX.Element {
   );
 }
 
-export default Reviews;
+export default ReviewForm;

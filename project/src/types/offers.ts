@@ -33,14 +33,6 @@ export type OfferCity = {
   name: string;
 };
 
-export type OfferItem = {
-  id: number;
-  previewImage: string;
-  price: number;
-  title: string;
-  type: string;
-  rating: number;
-  isPremium: boolean;
-};
+export type OfferItem = Offer;
 
 export type OfferHost = UserInfo;
