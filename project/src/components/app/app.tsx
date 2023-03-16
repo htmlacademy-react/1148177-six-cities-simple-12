@@ -26,7 +26,7 @@ function App({
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            index
             element={<Main placesCount={placesCount} offers={offersList} />}
           />
           <Route path={AppRoute.Login} element={<Login />} />
