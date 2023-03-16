@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+
 import { Offer, OfferItem } from '../../types/offers';
 import { Reviews } from '../../types/reviews';
 import { AppRoute } from '../../types/const';
+
 import OfferPage from '../../pages/offer';
 import Login from '../../pages/login';
 import NotFound from '../../pages/not-found';

@@ -9,9 +9,9 @@ function PropertyReviews({ reviews }: PropertyReviewsProps): JSX.Element {
   return (
     <>
       {reviews.map((review) => (
-        <>
+        <div key={review.id}>
           <h2 className="reviews__title">
-            Reviews &middot;{' '}
+            Reviews &middot;
             <span className="reviews__amount">{review.id}</span>
           </h2>
           <ul className="reviews__list">
@@ -31,7 +31,7 @@ function PropertyReviews({ reviews }: PropertyReviewsProps): JSX.Element {
               <div className="reviews__info">
                 <div className="reviews__rating rating">
                   <div className="reviews__stars rating__stars">
-                    <span style={{ width: `${review.rating * 20}%` }} />
+                    <span style={{ width: `${review.rating * 20}%`}} />
                     <span className="visually-hidden">Rating</span>
                   </div>
                 </div>
@@ -42,7 +42,7 @@ function PropertyReviews({ reviews }: PropertyReviewsProps): JSX.Element {
               </div>
             </li>
           </ul>
-        </>
+        </div>
       ))}
     </>
   );

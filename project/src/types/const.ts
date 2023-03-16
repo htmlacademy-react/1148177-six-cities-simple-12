@@ -15,3 +15,11 @@ export enum CardType {
   Cities = 'cities',
   NearPlaces = 'near-places',
 }
+
+export const RATING_TYPES: string[] = [
+  'perfect',
+  'good',
+  'not bad',
+  'badly',
+  'terribly'
+];

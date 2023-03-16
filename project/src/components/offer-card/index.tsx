@@ -6,20 +6,24 @@ import { firstLetterUpper } from '../../utils/funcs';
 type OfferCardProps = {
   offer: OfferItem;
   cardType: CardType;
+  onHover: (id: number) => void;
 };
 
-function OfferCard({ offer, cardType }: OfferCardProps): JSX.Element {
+function OfferCard({ offer, cardType, onHover }: OfferCardProps): JSX.Element {
   const { isPremium, previewImage, title, price, rating, type } = offer;
 
   return (
-    <article className={`${cardType}__card place-card`}>
+    <article
+      className={`${cardType}__card place-card`}
+      onMouseEnter={() => onHover(offer.id)}
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`/offer/${offer.id}/`}>
+        <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
             src={previewImage}

@@ -2,17 +2,16 @@ import { Reviews } from '../types/reviews';
 
 export const reviewsList: Reviews[] = [
   {
-    comment:
-      'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    date: '2023-03-11T20:42:44.999Z',
     id: 1,
-    rating: 4,
     user: {
-      avatarUrl: 'img/avatar-max.jpg',
-      id: 1,
+      id: 15,
       isPro: false,
-      name: 'Oliver.conner',
+      name: 'Kendall',
+      avatarUrl: 'https://12.react.pages.academy/static/avatar/6.jpg',
     },
+    rating: 2,
+    comment: 'Bathed in the nature. Completely unplugged. Unforgettable.',
+    date: '2023-02-19T07:31:24.880Z',
   },
 ];
 

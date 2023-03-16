@@ -1,7 +1,9 @@
 import { Helmet } from 'react-helmet-async';
+
 import { CardType } from '../../types/const';
 import { OfferItem } from '../../types/offers';
 import { emptyClass } from '../../utils/funcs';
+
 import Layout from '../../components/layout';
 import MainEmpty from '../../components/main-empty';
 import OffersList from '../../components/offers-list';

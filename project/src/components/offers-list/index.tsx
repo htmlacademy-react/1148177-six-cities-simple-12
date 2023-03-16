@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CardType } from '../../types/const';
 import { OfferItem } from '../../types/offers';
 import OfferCard from '../offer-card';
@@ -8,10 +9,17 @@ type OffersListProps = {
 };
 
 function OffersList({ offers, cardType }: OffersListProps): JSX.Element {
+  const [, setActiveCard] = useState<number | null>(null); // TODO
+
   return (
     <>
       {offers.map((offer) => (
-        <OfferCard key={offer.id} offer={offer} cardType={cardType} />
+        <OfferCard
+          key={offer.id}
+          offer={offer}
+          cardType={cardType}
+          onHover={setActiveCard}
+        />
       ))}
     </>
   );
