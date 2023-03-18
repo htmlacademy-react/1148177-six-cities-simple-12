@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { firstLetterUpper } from '../../utils/funcs';
-import { Offer, OfferItem } from '../../types/offers';
+import { OfferItem } from '../../types/offers';
 import { Reviews } from '../../types/reviews';
 import Layout from '../../components/layout';
 import ReviewForm from '../../components/review-form';
@@ -9,18 +9,26 @@ import RoomGallery from '../../components/room-gallery';
 import NearPlaces from '../../components/near-places';
 import PropertyHost from '../../components/property-host';
 import PropertyReviews from '../../components/property-reviews';
+import { useParams } from 'react-router-dom';
+import NotFound from '../not-found';
 
 type OfferProps = {
-  offer: Offer;
   offers: OfferItem[];
   reviews: Reviews[];
 };
 
-function OfferPage({ offer, offers, reviews }: OfferProps) {
+function OfferPage({ offers, reviews }: OfferProps) {
+  const { id } = useParams();
+  const offer = offers.find((o) => o.id === Number(id));
+
+  if (!offer) {
+    return <NotFound />;
+  }
+
   return (
     <Layout>
       <Helmet>
-        <title>{offer.title}</title>
+        <title>{offer?.title}</title>
       </Helmet>
 
       <main className="page__main page__main--property">

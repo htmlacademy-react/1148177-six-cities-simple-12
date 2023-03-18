@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-import { Offer, OfferItem } from '../../types/offers';
+import { OfferItem } from '../../types/offers';
 import { Reviews } from '../../types/reviews';
 import { AppRoute } from '../../types/const';
 
@@ -12,14 +12,12 @@ import Main from '../../pages/main';
 
 type AppProps = {
   placesCount: number;
-  offer: Offer;
   offersList: OfferItem[];
   reviewsList: Reviews[];
 };
 
 function App({
   placesCount,
-  offer,
   offersList,
   reviewsList,
 }: AppProps): JSX.Element {
@@ -36,7 +34,6 @@ function App({
             path={AppRoute.Offer}
             element={
               <OfferPage
-                offer={offer}
                 offers={offersList}
                 reviews={reviewsList}
               />
