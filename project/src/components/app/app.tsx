@@ -1,31 +1,44 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Main } from '../../pages/main';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus } from '../../types/const';
+
+import { OfferItem } from '../../types/offers';
+import { Reviews } from '../../types/reviews';
+import { AppRoute } from '../../types/const';
+
+import OfferPage from '../../pages/offer';
 import Login from '../../pages/login';
-import Property from '../../pages/room';
-import NotFound from '../not-found';
-import PrivateRoute from '../private-route';
+import NotFound from '../../pages/not-found';
+import Main from '../../pages/main';
 
 type AppProps = {
-  offers: number;
+  placesCount: number;
+  offersList: OfferItem[];
+  reviewsList: Reviews[];
 };
 
-function App({ offers }: AppProps) {
+function App({
+  placesCount,
+  offersList,
+  reviewsList,
+}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main offers={offers} />} />
           <Route
-            path={AppRoute.Login}
+            index
+            element={<Main placesCount={placesCount} offers={offersList} />}
+          />
+          <Route path={AppRoute.Login} element={<Login />} />
+          <Route
+            path={AppRoute.Offer}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <Login />
-              </PrivateRoute>
+              <OfferPage
+                offers={offersList}
+                reviews={reviewsList}
+              />
             }
           />
-          <Route path={AppRoute.Room} element={<Property />} />
           <Route path={AppRoute.NotFound} element={<NotFound />} />
         </Routes>
       </BrowserRouter>
