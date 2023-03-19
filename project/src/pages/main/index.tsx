@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { CardType } from '../../types/const';
@@ -9,6 +10,7 @@ import MainEmpty from '../../components/main-empty';
 import OffersList from '../../components/offers-list';
 import Sort from '../../components/sort';
 import Tabs from '../../components/tabs';
+import Map from '../../components/map';
 
 type MainProps = {
   placesCount: number;
@@ -16,6 +18,8 @@ type MainProps = {
 };
 
 function Main({ placesCount, offers }: MainProps) {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
   return (
     <Layout className="page--gray page--main">
       <Helmet>
@@ -35,11 +39,22 @@ function Main({ placesCount, offers }: MainProps) {
                 </b>
                 <Sort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={offers} cardType={CardType.Cities} />
+                  <OffersList
+                    offers={offers}
+                    cardType={CardType.Cities}
+                    onHover={(id) => setActiveCard(id)}
+                  />
                 </div>
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map" />
+                <div className="cities__right-section">
+                  <Map
+                    className="cities__map"
+                    offerCityLocation={offers[0].city.location}
+                    offers={offers}
+                    selectedOffer={activeCard}
+                  />
+                </div>
               </div>
             </div>
           ) : (

@@ -4,9 +4,10 @@ import OffersList from '../offers-list';
 
 type NearPlacesProps = {
   offers: OfferItem[];
+  onHover?: (id: number | null) => void;
 };
 
-function NearPlaces({ offers }: NearPlacesProps): JSX.Element {
+function NearPlaces({ offers, onHover }: NearPlacesProps): JSX.Element {
   const nearPlaces = offers.slice(0, 3);
 
   return (
@@ -16,7 +17,7 @@ function NearPlaces({ offers }: NearPlacesProps): JSX.Element {
           Other places in the neighbourhood
         </h2>
         <div className="near-places__list places__list">
-          <OffersList offers={nearPlaces} cardType={CardType.NearPlaces} />
+          <OffersList offers={nearPlaces} cardType={CardType.NearPlaces} onHover={onHover} />
         </div>
       </section>
     </div>

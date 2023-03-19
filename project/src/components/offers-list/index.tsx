@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { CardType } from '../../types/const';
-import { OfferItem } from '../../types/offers';
+import { Offer, OfferItem } from '../../types/offers';
 import OfferCard from '../offer-card';
 
 type OffersListProps = {
-  offers: OfferItem[];
+  offers: Offer[];
   cardType: CardType;
+  onHover?: (id: number | null) => void;
 };
 
-function OffersList({ offers, cardType }: OffersListProps): JSX.Element {
-  const [, setActiveCard] = useState<number | null>(null); // TODO
-
+function OffersList({
+  offers,
+  cardType,
+  onHover,
+}: OffersListProps): JSX.Element {
   return (
     <>
       {offers.map((offer) => (
@@ -18,7 +21,7 @@ function OffersList({ offers, cardType }: OffersListProps): JSX.Element {
           key={offer.id}
           offer={offer}
           cardType={cardType}
-          onHover={setActiveCard}
+          onHover={onHover}
         />
       ))}
     </>
