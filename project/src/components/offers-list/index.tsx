@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { CardType } from '../../types/const';
-import { Offer, OfferItem } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import OfferCard from '../offer-card';
 
 type OffersListProps = {
