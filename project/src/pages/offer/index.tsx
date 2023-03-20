@@ -11,8 +11,6 @@ import PropertyHost from '../../components/property-host';
 import PropertyReviews from '../../components/property-reviews';
 import { useParams } from 'react-router-dom';
 import NotFound from '../not-found';
-import Map from '../../components/map';
-import { useState } from 'react';
 
 type OfferProps = {
   offers: OfferItem[];
@@ -20,11 +18,8 @@ type OfferProps = {
 };
 
 function OfferPage({ offers, reviews }: OfferProps) {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
-  const firstThreeOffers = offers.slice(0, 3);
-
-  const { id: paramId } = useParams();
-  const offer = offers.find((o) => o.id === Number(paramId));
+  const { id } = useParams();
+  const offer = offers.find((o) => o.id === Number(id));
 
   if (!offer) {
     return <NotFound />;
@@ -81,15 +76,9 @@ function OfferPage({ offers, reviews }: OfferProps) {
               </section>
             </div>
           </div>
-
-          <Map
-            className="property__map"
-            offerCityLocation={offer.city.location}
-            selectedOffer={activeCard}
-            offers={firstThreeOffers}
-          />
+          <section className="property__map map" />
         </section>
-        <NearPlaces offers={offers} onHover={(id) => setActiveCard(id)} />
+        <NearPlaces offers={offers} />
       </main>
     </Layout>
   );
