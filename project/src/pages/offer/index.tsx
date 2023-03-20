@@ -1,25 +1,30 @@
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { firstLetterUpper } from '../../utils/funcs';
 import { OfferItem } from '../../types/offers';
-import { Reviews } from '../../types/reviews';
+import { Review } from '../../types/reviews';
 import Layout from '../../components/layout';
 import ReviewForm from '../../components/review-form';
 import InsideGoods from '../../components/inside-goods';
 import RoomGallery from '../../components/room-gallery';
 import NearPlaces from '../../components/near-places';
 import PropertyHost from '../../components/property-host';
-import PropertyReviews from '../../components/property-reviews';
-import { useParams } from 'react-router-dom';
+import ReviewsList from '../../components/reviews-list';
+import Map from '../../components/map';
 import NotFound from '../not-found';
 
 type OfferProps = {
   offers: OfferItem[];
-  reviews: Reviews[];
+  reviews: Review[];
 };
 
 function OfferPage({ offers, reviews }: OfferProps) {
-  const { id } = useParams();
-  const offer = offers.find((o) => o.id === Number(id));
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const firstThreeOffers = offers.slice(0, 3);
+
+  const { id: paramId } = useParams();
+  const offer = offers.find((o) => o.id === Number(paramId));
 
   if (!offer) {
     return <NotFound />;
@@ -71,14 +76,20 @@ function OfferPage({ offers, reviews }: OfferProps) {
               <InsideGoods offer={offer} />
               <PropertyHost host={offer.host} description={offer.description} />
               <section className="property__reviews reviews">
-                <PropertyReviews reviews={reviews} />
+                <ReviewsList reviews={reviews} />
                 <ReviewForm />
               </section>
             </div>
           </div>
-          <section className="property__map map" />
+
+          <Map
+            className="property__map"
+            offerCityLocation={offer.city.location}
+            selectedOffer={activeCard}
+            offers={firstThreeOffers}
+          />
         </section>
-        <NearPlaces offers={offers} />
+        <NearPlaces offers={offers} onHover={(id) => setActiveCard(id)} />
       </main>
     </Layout>
   );
