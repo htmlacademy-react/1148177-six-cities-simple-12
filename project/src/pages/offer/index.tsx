@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+
 import { firstLetterUpper } from '../../utils/funcs';
 import { OfferItem } from '../../types/offers';
 import { Review } from '../../types/reviews';
+
 import Layout from '../../components/layout';
 import ReviewForm from '../../components/review-form';
 import InsideGoods from '../../components/inside-goods';
@@ -33,7 +35,7 @@ function OfferPage({ offers, reviews }: OfferProps) {
   return (
     <Layout>
       <Helmet>
-        <title>{offer?.title}</title>
+        <title>{offer.title}</title>
       </Helmet>
 
       <main className="page__main page__main--property">

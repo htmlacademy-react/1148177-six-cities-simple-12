@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import Layout from '../../components/layout';
 import { Helmet } from 'react-helmet-async';
+
+import Layout from '../../components/layout';
 
 export default function Login() {
   return (
