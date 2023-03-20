@@ -23,8 +23,8 @@ function OfferPage({ offers, reviews }: OfferProps) {
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const firstThreeOffers = offers.slice(0, 3);
 
-  const { id } = useParams();
-  const offer = offers.find((o) => o.id === Number(id));
+  const { id: paramId } = useParams();
+  const offer = offers.find((o) => o.id === Number(paramId));
 
   if (!offer) {
     return <NotFound />;
