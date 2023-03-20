@@ -6,7 +6,7 @@ import { firstLetterUpper } from '../../utils/funcs';
 type OfferCardProps = {
   offer: OfferItem;
   cardType: CardType;
-  onHover: (id: number) => void;
+  onHover?: (id: number) => void;
 };
 
 function OfferCard({ offer, cardType, onHover }: OfferCardProps): JSX.Element {
@@ -15,7 +15,7 @@ function OfferCard({ offer, cardType, onHover }: OfferCardProps): JSX.Element {
   return (
     <article
       className={`${cardType}__card place-card`}
-      onMouseEnter={() => onHover(offer.id)}
+      onMouseEnter={() => onHover?.(offer.id)}
     >
       {isPremium && (
         <div className="place-card__mark">

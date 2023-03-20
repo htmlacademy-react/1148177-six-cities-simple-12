@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import StarInputs from '../StarInputs';
+import StarInputs from '../star-inputs';
 
 function ReviewForm(): JSX.Element {
   const [formData, setFormData] = useState({ rating: 0, review: '' });

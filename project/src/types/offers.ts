@@ -14,22 +14,18 @@ export type Offer = {
   goods: string[];
   host: OfferHost;
   images: string[];
-  location: OfferLocation;
+  location: OfferCityLocation;
   maxAdults: number;
 };
 
-export type OfferLocation = {
+export type OfferCityLocation = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
 
 export type OfferCity = {
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-  };
+  location: OfferCityLocation;
   name: string;
 };
 
