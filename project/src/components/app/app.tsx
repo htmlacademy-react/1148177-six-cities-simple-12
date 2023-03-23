@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-import { OfferItem } from '../../types/offers';
-import { Reviews } from '../../types/reviews';
+import { Offer } from '../../types/offers';
+import { Review } from '../../types/reviews';
 import { AppRoute } from '../../types/const';
 
 import OfferPage from '../../pages/offer';
@@ -12,15 +12,11 @@ import Main from '../../pages/main';
 
 type AppProps = {
   placesCount: number;
-  offersList: OfferItem[];
-  reviewsList: Reviews[];
+  offersList: Offer[];
+  reviewsList: Review[];
 };
 
-function App({
-  placesCount,
-  offersList,
-  reviewsList,
-}: AppProps): JSX.Element {
+function App({ placesCount, offersList, reviewsList }: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -32,12 +28,7 @@ function App({
           <Route path={AppRoute.Login} element={<Login />} />
           <Route
             path={AppRoute.Offer}
-            element={
-              <OfferPage
-                offers={offersList}
-                reviews={reviewsList}
-              />
-            }
+            element={<OfferPage offers={offersList} reviews={reviewsList} />}
           />
           <Route path={AppRoute.NotFound} element={<NotFound />} />
         </Routes>
