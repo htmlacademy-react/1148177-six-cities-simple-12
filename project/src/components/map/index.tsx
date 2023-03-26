@@ -1,42 +1,50 @@
-import cx from 'classnames';
 import { useEffect, useRef } from 'react';
 import { Icon, Marker } from 'leaflet';
-
+import leaflet from 'leaflet';
+import cx from 'classnames';
 import 'leaflet/dist/leaflet.css';
-import { Offer, OfferCityLocation } from '../../types/offers';
+
 import useMap from '../../hooks/useMap';
+import { useAppSelector } from '../../hooks';
+import { Offer } from '../../types/offers';
+import { CURRENT_CUSTOM_ICON, DEFAULT_CUSTOM_ICON } from '../../types/const';
 
 type MapProps = {
-  offerCityLocation: OfferCityLocation;
   offers: Offer[];
-  selectedOffer: number | null;
   className: string;
 };
 
 const defaultCustomIcon = new Icon({
-  iconUrl: './img/pin.svg',
+  iconUrl: DEFAULT_CUSTOM_ICON,
   iconSize: [28, 40],
   iconAnchor: [14, 40],
   style: { color: 'red' },
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: './img/pin-active.svg',
+  iconUrl: CURRENT_CUSTOM_ICON,
   iconSize: [28, 40],
   iconAnchor: [14, 40],
 });
 
-function Map({
-  offerCityLocation,
-  offers,
-  selectedOffer,
-  className,
-}: MapProps): JSX.Element {
+function Map({ offers, className }: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, offerCityLocation);
+  const selectedCityId = useAppSelector((state) => state.selectedOfferId);
+  const cityLocation = offers[0].city.location;
+  const map = useMap(mapRef, cityLocation);
 
   useEffect(() => {
     if (map) {
+      map.flyTo(
+        [cityLocation.latitude, cityLocation.longitude],
+        cityLocation.zoom
+      );
+    }
+  }, [map, cityLocation]);
+
+  useEffect(() => {
+    if (map) {
+      const markerGroup = leaflet.layerGroup().addTo(map);
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
@@ -45,14 +53,14 @@ function Map({
 
         marker
           .setIcon(
-            selectedOffer !== undefined && offer.id === selectedOffer
+            selectedCityId !== undefined && offer.id === selectedCityId
               ? currentCustomIcon
               : defaultCustomIcon
           )
-          .addTo(map);
+          .addTo(markerGroup);
       });
     }
-  }, [map, offers, selectedOffer]);
+  }, [map, offers, selectedCityId, cityLocation]);
 
   return (
     <section
