@@ -21,5 +21,17 @@ export const RATING_TYPES: string[] = [
   'good',
   'not bad',
   'badly',
-  'terribly'
+  'terribly',
 ];
+
+export const CITIES = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+];
+
+export const DEFAULT_CUSTOM_ICON = './img/pin.svg';
+export const CURRENT_CUSTOM_ICON = '/img/pin-active.svg';

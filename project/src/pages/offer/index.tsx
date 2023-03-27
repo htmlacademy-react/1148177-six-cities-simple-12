@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-import { firstLetterUpper } from '../../utils/funcs';
-import { OfferItem } from '../../types/offers';
+import { firstLetterUpper, getOffersByCity } from '../../utils/funcs';
+import { useAppSelector } from '../../hooks';
 import { Review } from '../../types/reviews';
 
 import Layout from '../../components/layout';
@@ -17,16 +16,17 @@ import Map from '../../components/map';
 import NotFound from '../not-found';
 
 type OfferProps = {
-  offers: OfferItem[];
   reviews: Review[];
 };
 
-function OfferPage({ offers, reviews }: OfferProps) {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
-  const firstThreeOffers = offers.slice(0, 3);
+function OfferPage({ reviews }: OfferProps) {
+  const city = useAppSelector((state) => state.city);
+  const offersByCity = getOffersByCity(city);
+
+  const firstThreeOffers = offersByCity.slice(0, 3);
 
   const { id: paramId } = useParams();
-  const offer = offers.find((o) => o.id === Number(paramId));
+  const offer = offersByCity.find((o) => o.id === Number(paramId));
 
   if (!offer) {
     return <NotFound />;
@@ -84,14 +84,9 @@ function OfferPage({ offers, reviews }: OfferProps) {
             </div>
           </div>
 
-          <Map
-            className="property__map"
-            offerCityLocation={offer.city.location}
-            selectedOffer={activeCard}
-            offers={firstThreeOffers}
-          />
+          <Map className="property__map" offers={offersByCity} />
         </section>
-        <NearPlaces offers={offers} onHover={(id) => setActiveCard(id)} />
+        <NearPlaces offers={firstThreeOffers} />
       </main>
     </Layout>
   );

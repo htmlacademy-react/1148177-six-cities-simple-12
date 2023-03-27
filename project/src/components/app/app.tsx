@@ -11,24 +11,23 @@ import NotFound from '../../pages/not-found';
 import Main from '../../pages/main';
 
 type AppProps = {
-  placesCount: number;
   offersList: Offer[];
   reviewsList: Review[];
 };
 
-function App({ placesCount, offersList, reviewsList }: AppProps): JSX.Element {
+function App({ offersList, reviewsList }: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             index
-            element={<Main placesCount={placesCount} offers={offersList} />}
+            element={<Main />}
           />
           <Route path={AppRoute.Login} element={<Login />} />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage offers={offersList} reviews={reviewsList} />}
+            element={<OfferPage reviews={reviewsList} />}
           />
           <Route path={AppRoute.NotFound} element={<NotFound />} />
         </Routes>

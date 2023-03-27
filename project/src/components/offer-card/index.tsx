@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { selectOffer } from '../../store/action';
 import { CardType } from '../../types/const';
 import { OfferItem } from '../../types/offers';
 import { firstLetterUpper } from '../../utils/funcs';
@@ -6,16 +8,17 @@ import { firstLetterUpper } from '../../utils/funcs';
 type OfferCardProps = {
   offer: OfferItem;
   cardType: CardType;
-  onHover?: (id: number) => void;
 };
 
-function OfferCard({ offer, cardType, onHover }: OfferCardProps): JSX.Element {
+function OfferCard({ offer, cardType }: OfferCardProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   const { isPremium, previewImage, title, price, rating, type } = offer;
 
   return (
     <article
       className={`${cardType}__card place-card`}
-      onMouseEnter={() => onHover?.(offer.id)}
+      onMouseEnter={() => dispatch(selectOffer(offer.id))}
     >
       {isPremium && (
         <div className="place-card__mark">

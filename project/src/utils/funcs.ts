@@ -1,3 +1,4 @@
+import { offersList } from '../mocks/offers';
 import { OfferItem } from '../types/offers';
 
 function emptyClass(offers: Array<OfferItem>) {
@@ -17,4 +18,8 @@ function formatDate(date: string, locales = 'en-US') {
   });
 }
 
-export { emptyClass, firstLetterUpper, formatDate };
+function getOffersByCity(city: string) {
+  return offersList.filter((offer) => offer.city.name === city);
+}
+
+export { emptyClass, firstLetterUpper, formatDate, getOffersByCity };
