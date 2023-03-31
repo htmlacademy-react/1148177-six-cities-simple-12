@@ -35,3 +35,10 @@ export const CITIES = [
 
 export const DEFAULT_CUSTOM_ICON = './img/pin.svg';
 export const CURRENT_CUSTOM_ICON = '/img/pin-active.svg';
+
+export enum SortType {
+  Popular = 'Popular',
+  LowPrice = 'Price: low to high',
+  HighPrice = 'Price: high to low',
+  Rating = 'Top rated first',
+}

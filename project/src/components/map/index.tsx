@@ -66,7 +66,12 @@ function Map({ offers, className }: MapProps): JSX.Element {
     <section
       className={cx('map', { className })}
       ref={mapRef}
-      style={{ height: '500px', width: '100%' }}
+      style={{
+        height: '500px',
+        width: 'clamp(1200px,100px, 100%) ',
+        margin: '0 auto',
+        marginBottom: '20px',
+      }}
     />
   );
 }

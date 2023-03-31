@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-import { firstLetterUpper, getOffersByCity } from '../../utils/funcs';
+import { firstLetterUpper } from '../../utils/funcs';
 import { useAppSelector } from '../../hooks';
 import { Review } from '../../types/reviews';
 
@@ -20,8 +20,7 @@ type OfferProps = {
 };
 
 function OfferPage({ reviews }: OfferProps) {
-  const city = useAppSelector((state) => state.city);
-  const offersByCity = getOffersByCity(city);
+  const offersByCity = useAppSelector((state) => state.offersList);
 
   const firstThreeOffers = offersByCity.slice(0, 3);
 

@@ -1,8 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useAppSelector } from '../../hooks';
 import { CardType } from '../../types/const';
-import { emptyClass } from '../../utils/funcs';
-import { getOffersByCity } from '../../utils/funcs';
+import { emptyClass, getOffers } from '../../utils/funcs';
 
 import Map from '../../components/map';
 import Sort from '../../components/sort';
@@ -13,7 +12,9 @@ import CitiesList from '../../components/cities-list';
 
 function Main() {
   const city = useAppSelector((state) => state.city);
-  const offers = getOffersByCity(city);
+  const offersState = useAppSelector((state) => state.offersList);
+  const sortType = useAppSelector((state) => state.sortType);
+  const offers = getOffers(offersState, city, sortType);
 
   return (
     <Layout className="page--gray page--main">
