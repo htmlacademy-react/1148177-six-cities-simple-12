@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 
 import { firstLetterUpper } from '../../utils/funcs';
-import { useAppSelector } from '../../hooks';
-import { Review } from '../../types/reviews';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 import Layout from '../../components/layout';
 import ReviewForm from '../../components/review-form';
@@ -15,67 +15,92 @@ import ReviewsList from '../../components/reviews-list';
 import Map from '../../components/map';
 import NotFound from '../not-found';
 
-type OfferProps = {
-  reviews: Review[];
-};
+import {
+  fetchNearOffersAction,
+  fetchOfferByIdAction,
+  fetchReviewAction,
+} from '../../store/api-actions';
+import Loading from '../loading';
 
-function OfferPage({ reviews }: OfferProps) {
-  const offersByCity = useAppSelector((state) => state.offersList);
-
-  const firstThreeOffers = offersByCity.slice(0, 3);
-
+function OfferPage() {
   const { id: paramId } = useParams();
-  const offer = offersByCity.find((o) => o.id === Number(paramId));
+  const offerId = Number(paramId);
+  const dispatch = useAppDispatch();
 
-  if (!offer) {
+  useEffect(() => {
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchOfferByIdAction(offerId));
+      dispatch(fetchNearOffersAction(offerId));
+      dispatch(fetchReviewAction(offerId));
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [dispatch, offerId]);
+
+  const offerById = useAppSelector((state) => state.offerById);
+  const reviews = useAppSelector((state) => state.reviews);
+  const nearOffers = useAppSelector((state) => state.nearOffers);
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+
+  if (isDataLoading) {
+    return <Loading />;
+  }
+
+  if (!offerById) {
     return <NotFound />;
   }
 
   return (
     <Layout>
       <Helmet>
-        <title>{offer.title}</title>
+        <title>{offerById.title}</title>
       </Helmet>
 
       <main className="page__main page__main--property">
         <section className="property">
-          <RoomGallery offer={offer} />
+          <RoomGallery offer={offerById} />
           <div className="property__container container">
             <div className="property__wrapper">
-              {offer.isPremium && (
+              {offerById.isPremium && (
                 <div className="property__mark">
                   <span>Premium</span>
                 </div>
               )}
               <div className="property__name-wrapper">
-                <h1 className="property__name">{offer.title}</h1>
+                <h1 className="property__name">{offerById.title}</h1>
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{ width: `${offer.rating * 20}%` }} />
+                  <span style={{ width: `${offerById.rating * 20}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">
-                  {offer.rating}
+                  {offerById.rating}
                 </span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {firstLetterUpper(offer.type)}
+                  {firstLetterUpper(offerById.type)}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {offer.bedrooms} Bedrooms
+                  {offerById.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {offer.maxAdults} adults
+                  Max {offerById.maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;{offer.price}</b>
+                <b className="property__price-value">&euro;{offerById.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
-              <InsideGoods offer={offer} />
-              <PropertyHost host={offer.host} description={offer.description} />
+              <InsideGoods offer={offerById} />
+              <PropertyHost
+                host={offerById.host}
+                description={offerById.description}
+              />
               <section className="property__reviews reviews">
                 <ReviewsList reviews={reviews} />
                 <ReviewForm />
@@ -83,9 +108,9 @@ function OfferPage({ reviews }: OfferProps) {
             </div>
           </div>
 
-          <Map className="property__map" offers={offersByCity} />
+          <Map className="property__map" offers={nearOffers} />
         </section>
-        <NearPlaces offers={firstThreeOffers} />
+        <NearPlaces offers={nearOffers} />
       </main>
     </Layout>
   );

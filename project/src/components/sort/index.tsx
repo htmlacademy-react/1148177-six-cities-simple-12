@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import cx from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
-import { changeSort, updateOffers } from '../../store/action';
+import { changeSort } from '../../store/action';
 import { SortType } from '../../types/const';
 
 function Sort(): JSX.Element {
@@ -11,8 +11,7 @@ function Sort(): JSX.Element {
   const dispatch = useAppDispatch();
   const refOne = useRef<HTMLDivElement>(null);
 
-  const clickOutsideHandler = () => setOpen(false);
-  useOnClickOutside(refOne, clickOutsideHandler);
+  useOnClickOutside(refOne, () => setOpen(false));
 
   return (
     <form className="places__sorting">
@@ -43,7 +42,6 @@ function Sort(): JSX.Element {
             onClick={() => {
               setOpen(false);
               dispatch(changeSort(value));
-              dispatch(updateOffers());
             }}
           >
             {value}

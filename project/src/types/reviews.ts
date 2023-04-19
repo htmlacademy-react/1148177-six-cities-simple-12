@@ -6,6 +6,8 @@ export type Review = {
   user: UserInfo;
 };
 
+export type Reviews = Review[];
+
 export type UserInfo = {
   avatarUrl: string;
   id: number;
