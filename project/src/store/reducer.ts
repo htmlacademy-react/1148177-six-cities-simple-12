@@ -15,7 +15,7 @@ import {
 } from './action';
 import { Reviews } from '../types/reviews';
 
-type InitialState = {
+type InitialStateProps = {
   selectedOfferId: number | null;
   city: string;
   sortType: SortType;
@@ -27,7 +27,7 @@ type InitialState = {
   isDataLoading: boolean;
 };
 
-const initialState: InitialState = {
+const initialState: InitialStateProps = {
   selectedOfferId: null,
   city: CITIES[0],
   sortType: SortType.Popular,
