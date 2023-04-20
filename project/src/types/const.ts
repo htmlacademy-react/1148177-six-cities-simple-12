@@ -11,6 +11,13 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+  Reviews = '/comments',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export enum CardType {
   Cities = 'cities',
   NearPlaces = 'near-places',

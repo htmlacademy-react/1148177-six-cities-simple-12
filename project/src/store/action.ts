@@ -1,5 +1,7 @@
+import { Reviews } from './../types/reviews';
 import { createAction } from '@reduxjs/toolkit';
-import { SortType } from '../types/const';
+import { AppRoute, AuthorizationStatus, SortType } from '../types/const';
+import { Offer, Offers } from '../types/offers';
 
 export const changeCity = createAction('city/changeCity', (city: string) => ({
   payload: city,
@@ -17,4 +19,20 @@ export const changeSort = createAction(
   (sort: SortType) => ({ payload: sort })
 );
 
-export const updateOffers = createAction('offers/updateOffers');
+export const loadOffers = createAction<Offers>('data/loadOffers');
+
+export const loadOfferById = createAction<Offer>('data/loadOfferById');
+
+export const loadNearOffers = createAction<Offers>('data/loadNearOffers');
+
+export const loadReviews = createAction<Reviews>('data/loadReviews');
+
+export const requireAuthorization = createAction<AuthorizationStatus>(
+  'user/requireAuthorization'
+);
+
+export const setDataLoadingStatus = createAction<boolean>(
+  'data/setDataLoadingStatus'
+);
+
+export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');

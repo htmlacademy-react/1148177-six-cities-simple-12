@@ -32,3 +32,7 @@ export type OfferCity = {
 export type OfferItem = Offer;
 
 export type OfferHost = UserInfo;
+
+export type OfferId = number;
+
+export type Offers = Offer[];

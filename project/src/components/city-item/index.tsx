@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import cx from 'classnames';
 import { useAppSelector } from '../../hooks';
-import { changeCity, updateOffers } from '../../store/action';
+import { changeCity } from '../../store/action';
 
 type CityItemProps = {
   city: string;
@@ -15,7 +15,6 @@ function CityItem({ city }: CityItemProps): JSX.Element {
   const handleChangeCity = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     dispatch(changeCity(city));
-    dispatch(updateOffers());
   };
 
   return (
