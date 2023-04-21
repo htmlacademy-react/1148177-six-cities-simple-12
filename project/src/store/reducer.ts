@@ -9,11 +9,13 @@ import {
   loadOfferById,
   loadOffers,
   loadReviews,
+  loadUserData,
   requireAuthorization,
   selectOffer,
   setDataLoadingStatus,
 } from './action';
 import { Reviews } from '../types/reviews';
+import { UserData } from '../types/user-data';
 
 type InitialStateProps = {
   selectedOfferId: number | null;
@@ -25,6 +27,7 @@ type InitialStateProps = {
   reviews: Reviews;
   authorizationStatus: AuthorizationStatus;
   isDataLoading: boolean;
+  userData: UserData | null;
 };
 
 const initialState: InitialStateProps = {
@@ -37,6 +40,7 @@ const initialState: InitialStateProps = {
   reviews: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoading: false,
+  userData: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -67,5 +71,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(loadUserData, (state, action) => {
+      state.userData = action.payload;
     });
 });
