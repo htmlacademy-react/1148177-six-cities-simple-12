@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
-import { firstLetterUpper } from '../../utils/funcs';
+import { firstLetterUpper, getRating } from '../../utils/funcs';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Map from '../../components/map';
 import Layout from '../../components/layout';
@@ -69,7 +69,7 @@ function OfferPage() {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{ width: `${offer.rating * 20}%` }} />
+                  <span style={{ width: `${getRating(offer.rating)}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">

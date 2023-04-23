@@ -7,10 +7,10 @@ import { getSortType } from '../../store/app-process/selectors';
 import { changeSort } from '../../store/app-process/app-process';
 
 function Sort(): JSX.Element {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const refOne = useRef<HTMLDivElement>(null);
   const sortType = useAppSelector(getSortType);
   const dispatch = useAppDispatch();
-  const refOne = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(refOne, () => setOpen(false));
 
@@ -19,7 +19,6 @@ function Sort(): JSX.Element {
       <span className="places__sorting-caption">Sort by&nbsp;</span>
       <span
         className="places__sorting-type"
-        tabIndex={0}
         onClick={() => setOpen(!open)}
         ref={refOne}
       >

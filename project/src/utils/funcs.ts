@@ -18,14 +18,15 @@ function formatDate(date: string, locales = 'en-US') {
   });
 }
 
-const getOffersByCity = (city: string, offers: Offers) =>
-  offers.filter((offer) => offer.city.name === city);
+function getOffersByCity(city: string, offers: Offers) {
+  return offers.filter((offer) => offer.city.name === city);
+}
 
-const getCurrentOffers = (
+function getCurrentOffers(
   offers: Offers,
   city = City.Paris,
   sortType = SortType.Popular
-): Offers => {
+): Offers {
   const offersByLocation = getOffersByCity(city, offers);
 
   switch (sortType) {
@@ -38,7 +39,11 @@ const getCurrentOffers = (
     default:
       return offersByLocation;
   }
-};
+}
+
+function getRating(rating: number): number {
+  return (Math.round(rating) * 100) / 5;
+}
 
 export {
   emptyClass,
@@ -46,4 +51,5 @@ export {
   formatDate,
   getOffersByCity,
   getCurrentOffers,
+  getRating,
 };
