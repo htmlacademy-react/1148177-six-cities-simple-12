@@ -5,13 +5,13 @@ import cx from 'classnames';
 import 'leaflet/dist/leaflet.css';
 
 import useMap from '../../hooks/useMap';
-import { useAppSelector } from '../../hooks';
-import { Offer } from '../../types/offers';
+import { Offer, OfferId } from '../../types/offers';
 import { CURRENT_CUSTOM_ICON, DEFAULT_CUSTOM_ICON } from '../../types/const';
 
 type MapProps = {
   offers: Offer[];
   className: string;
+  selectedOfferId: OfferId | null;
 };
 
 const defaultCustomIcon = new Icon({
@@ -27,18 +27,15 @@ const currentCustomIcon = new Icon({
   iconAnchor: [14, 40],
 });
 
-function Map({ offers, className }: MapProps): JSX.Element {
+function Map({ offers, className, selectedOfferId }: MapProps): JSX.Element {
   const mapRef = useRef(null);
-  const selectedCityId = useAppSelector((state) => state.selectedOfferId);
-  const cityLocation = offers[0].city.location;
+  const cityLocation = offers[0]?.city?.location;
   const map = useMap(mapRef, cityLocation);
 
   useEffect(() => {
     if (map) {
-      map.flyTo(
-        [cityLocation.latitude, cityLocation.longitude],
-        cityLocation.zoom
-      );
+      const { latitude, longitude, zoom } = cityLocation;
+      map.flyTo([latitude, longitude], zoom);
     }
   }, [map, cityLocation]);
 
@@ -53,14 +50,18 @@ function Map({ offers, className }: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedCityId !== undefined && offer.id === selectedCityId
+            selectedOfferId !== null && offer.id === selectedOfferId
               ? currentCustomIcon
               : defaultCustomIcon
           )
           .addTo(markerGroup);
       });
+
+      return () => {
+        map.removeLayer(markerGroup);
+      };
     }
-  }, [map, offers, selectedCityId, cityLocation]);
+  }, [map, offers, selectedOfferId, cityLocation]);
 
   return (
     <section

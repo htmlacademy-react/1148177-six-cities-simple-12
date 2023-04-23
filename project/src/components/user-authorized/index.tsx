@@ -1,10 +1,11 @@
 import { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { logoutAction } from '../../store/api-actions';
+import { getUserData } from '../../store/user-process/selectors';
+import { logoutAction } from '../../store/user-process/api-actions';
 
 function UserAuthorized(): JSX.Element {
-  const userData = useAppSelector((state) => state.userData);
+  const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
 
   return (

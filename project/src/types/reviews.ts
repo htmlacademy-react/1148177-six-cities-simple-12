@@ -14,3 +14,5 @@ export type UserInfo = {
   isPro: boolean;
   name: string;
 };
+
+export type ReviewData = Omit<Review, 'user' | 'date'>;

@@ -9,6 +9,7 @@ export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
+  Loading = 'LOADING',
 }
 
 export enum APIRoute {
@@ -31,14 +32,6 @@ export const RATING_TYPES: string[] = [
   'terribly',
 ];
 
-export const CITIES = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf',
-];
 
 export const DEFAULT_CUSTOM_ICON = './img/pin.svg';
 export const CURRENT_CUSTOM_ICON = '/img/pin-active.svg';
@@ -48,4 +41,28 @@ export enum SortType {
   LowPrice = 'Price: low to high',
   HighPrice = 'Price: high to low',
   Rating = 'Top rated first',
+}
+
+export enum City {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}
+
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
+  Offer = 'OFFER',
+  App = 'APP',
+  Notifications = 'NOTIFICATIONS',
+}
+
+export enum FetchStatus {
+  Idle = 'Idle',
+  Loading = 'Loading',
+  Success = 'Success',
+  Failed = 'Failed',
 }

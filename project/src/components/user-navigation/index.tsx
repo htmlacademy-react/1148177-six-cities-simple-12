@@ -1,21 +1,15 @@
 import { useAppSelector } from '../../hooks';
-import { AuthorizationStatus } from '../../types/const';
-import UserAuthorized from '../user-authorized';
+import { getIsAuthorized } from '../../store/user-process/selectors';
 import UserUnauthorized from '../user-authorized/user-unauthorized';
+import UserAuthorized from '../user-authorized';
 
 export default function UserNavigation(): JSX.Element {
-  const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus
-  );
+  const isAuth = useAppSelector(getIsAuthorized);
 
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
-        {authorizationStatus === AuthorizationStatus.Auth ? (
-          <UserAuthorized />
-        ) : (
-          <UserUnauthorized />
-        )}
+        {isAuth ? <UserAuthorized /> : <UserUnauthorized />}
       </ul>
     </nav>
   );

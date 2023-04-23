@@ -1,15 +1,13 @@
 import { Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-
+import LoginForm from '../../login-form';
 import Layout from '../../components/layout';
 import { useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../types/const';
-import LoginForm from '../../login-form';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 export default function Login() {
-  const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus
-  );
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Main} />;

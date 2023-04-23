@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import { selectOffer } from '../../store/action';
 import { CardType } from '../../types/const';
 import { OfferItem } from '../../types/offers';
 import { firstLetterUpper } from '../../utils/funcs';
+import { selectOffer } from '../../store/app-process/app-process';
 
 type OfferCardProps = {
   offer: OfferItem;
@@ -19,6 +19,7 @@ function OfferCard({ offer, cardType }: OfferCardProps): JSX.Element {
     <article
       className={`${cardType}__card place-card`}
       onMouseEnter={() => dispatch(selectOffer(offer.id))}
+      onMouseLeave={() => dispatch(selectOffer(null))}
     >
       {isPremium && (
         <div className="place-card__mark">

@@ -1,13 +1,14 @@
-import { useRef, useState } from 'react';
 import cx from 'classnames';
+import { useRef, useState } from 'react';
+import { SortType } from '../../types/const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
-import { changeSort } from '../../store/action';
-import { SortType } from '../../types/const';
+import { getSortType } from '../../store/app-process/selectors';
+import { changeSort } from '../../store/app-process/app-process';
 
 function Sort(): JSX.Element {
-  const [open, setOpen] = useState<boolean>(false);
-  const sortType = useAppSelector((state) => state.sortType);
+  const [open, setOpen] = useState(false);
+  const sortType = useAppSelector(getSortType);
   const dispatch = useAppDispatch();
   const refOne = useRef<HTMLDivElement>(null);
 
@@ -15,7 +16,7 @@ function Sort(): JSX.Element {
 
   return (
     <form className="places__sorting">
-      <span className="places__sorting-caption">Sort by</span>
+      <span className="places__sorting-caption">Sort by&nbsp;</span>
       <span
         className="places__sorting-type"
         tabIndex={0}
@@ -38,7 +39,6 @@ function Sort(): JSX.Element {
             className={cx('places__option', {
               'places__option--active': value === sortType,
             })}
-            tabIndex={0}
             onClick={() => {
               setOpen(false);
               dispatch(changeSort(value));

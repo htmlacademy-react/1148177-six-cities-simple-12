@@ -1,20 +1,44 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useAppSelector } from '../../hooks';
 import { CardType } from '../../types/const';
-import { emptyClass, getOffers } from '../../utils/funcs';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { emptyClass, getCurrentOffers } from '../../utils/funcs';
 
 import Map from '../../components/map';
 import Sort from '../../components/sort';
 import Layout from '../../components/layout';
 import MainEmpty from '../../components/main-empty';
-import OffersList from '../../components/offers-list';
 import CitiesList from '../../components/cities-list';
+import OffersList from '../../components/offers-list';
+
+import { fetchOffersAction } from '../../store/offers-data/api-actions';
+import {
+  getCity,
+  getSelectedOfferId,
+  getSortType,
+} from '../../store/app-process/selectors';
+import { getOffersStatus, getOffers } from '../../store/offers-data/selectors';
+
+import Loading from '../loading';
 
 function Main() {
-  const city = useAppSelector((state) => state.city);
-  const offersState = useAppSelector((state) => state.offersList);
-  const sortType = useAppSelector((state) => state.sortType);
-  const offers = getOffers(offersState, city, sortType);
+  const offers = useAppSelector(getOffers);
+  const location = useAppSelector(getCity);
+  const sortType = useAppSelector(getSortType);
+  const selectedOfferId = useAppSelector(getSelectedOfferId);
+  const currentOffers = getCurrentOffers(offers, location, sortType);
+  const status = useAppSelector(getOffersStatus);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!offers.length) {
+      dispatch(fetchOffersAction());
+    }
+  }, [dispatch, offers]);
+
+  if (status.isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Layout className="page--gray page--main">
@@ -31,7 +55,7 @@ function Main() {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">
-                  {offers.length} places to stay in {city}
+                  {currentOffers.length} places to stay in {location}
                 </b>
                 <Sort />
                 <div className="cities__places-list places__list tabs__content">
@@ -40,7 +64,11 @@ function Main() {
               </section>
               <div className="cities__right-section">
                 <div className="cities__right-section">
-                  <Map className="cities__map" offers={offers} />
+                  <Map
+                    className="cities__map"
+                    offers={currentOffers}
+                    selectedOfferId={selectedOfferId}
+                  />
                 </div>
               </div>
             </div>

@@ -1,21 +1,17 @@
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import cx from 'classnames';
-import { useAppSelector } from '../../hooks';
-import { changeCity } from '../../store/action';
+import { Link } from 'react-router-dom';
+import { City } from '../../types/const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getCity } from '../../store/app-process/selectors';
+import { changeLocation } from '../../store/app-process/app-process';
 
 type CityItemProps = {
-  city: string;
+  city: City;
 };
 
 function CityItem({ city }: CityItemProps): JSX.Element {
-  const dispatch = useDispatch();
-  const currentCity = useAppSelector((state) => state.city);
-
-  const handleChangeCity = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    dispatch(changeCity(city));
-  };
+  const dispatch = useAppDispatch();
+  const currentCity = useAppSelector(getCity);
 
   return (
     <li className="locations__item">
@@ -23,8 +19,11 @@ function CityItem({ city }: CityItemProps): JSX.Element {
         className={cx('locations__item-link tabs__item', {
           'tabs__item--active': city === currentCity,
         })}
-        onClick={handleChangeCity}
         to="/"
+        onClick={(event) => {
+          event.preventDefault();
+          dispatch(changeLocation(city));
+        }}
       >
         <span>{city}</span>
       </Link>

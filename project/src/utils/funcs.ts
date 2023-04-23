@@ -1,5 +1,5 @@
-import { CITIES, SortType } from '../types/const';
-import { OfferItem, Offer } from '../types/offers';
+import { City, SortType } from '../types/const';
+import { OfferItem, Offers } from '../types/offers';
 
 function emptyClass(offers: Array<OfferItem>) {
   const className = 'page__main page__main--index';
@@ -18,16 +18,15 @@ function formatDate(date: string, locales = 'en-US') {
   });
 }
 
-function getOffersByCity(city: string, offersList: Offer[]) {
-  return offersList.filter((offer) => offer.city.name === city);
-}
+const getOffersByCity = (city: string, offers: Offers) =>
+  offers.filter((offer) => offer.city.name === city);
 
-function getOffers(
-  offersList: Offer[],
-  city = CITIES[0],
+const getCurrentOffers = (
+  offers: Offers,
+  city = City.Paris,
   sortType = SortType.Popular
-): Offer[] {
-  const offersByLocation = getOffersByCity(city, offersList);
+): Offers => {
+  const offersByLocation = getOffersByCity(city, offers);
 
   switch (sortType) {
     case SortType.LowPrice:
@@ -39,6 +38,12 @@ function getOffers(
     default:
       return offersByLocation;
   }
-}
+};
 
-export { emptyClass, firstLetterUpper, formatDate, getOffersByCity, getOffers };
+export {
+  emptyClass,
+  firstLetterUpper,
+  formatDate,
+  getOffersByCity,
+  getCurrentOffers,
+};

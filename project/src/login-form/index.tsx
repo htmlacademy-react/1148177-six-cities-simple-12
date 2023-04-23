@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 
 import { useAppDispatch } from '../hooks';
-import { loginAction } from '../store/api-actions';
+import { loginAction } from '../store/user-process/api-actions';
 
 const LOGIN_FIELDS: Record<string, string> = {
   email: 'E-mail',
