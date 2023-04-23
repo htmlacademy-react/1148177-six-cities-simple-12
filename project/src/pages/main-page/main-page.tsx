@@ -4,13 +4,13 @@ import { CardType } from '../../types/const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { emptyClass, getCurrentOffers } from '../../utils/funcs';
 
-import Map from '../../components/map';
-import Sort from '../../components/sort';
-import Layout from '../../components/layout';
-import Loading from '../../components/loading';
-import MainEmpty from '../../components/main-empty';
-import CitiesList from '../../components/cities-list';
-import OffersList from '../../components/offers-list';
+import Map from '../../components/map/map';
+import Sort from '../../components/sort/sort';
+import Layout from '../../components/layout/layout';
+import Loading from '../../components/loading/loading';
+import MainEmpty from '../../components/main-empty/main-empty';
+import CitiesList from '../../components/cities-list/cities-list';
+import OffersList from '../../components/offers-list/offers-list';
 
 import { fetchOffersAction } from '../../store/offers-data/api-actions';
 import {
@@ -20,8 +20,7 @@ import {
 } from '../../store/app-process/selectors';
 import { getOffersStatus, getOffers } from '../../store/offers-data/selectors';
 
-
-function Main() {
+function MainPage() {
   const offers = useAppSelector(getOffers);
   const location = useAppSelector(getCity);
   const sortType = useAppSelector(getSortType);
@@ -59,7 +58,10 @@ function Main() {
                 </b>
                 <Sort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={currentOffers} cardType={CardType.Cities} />
+                  <OffersList
+                    offers={currentOffers}
+                    cardType={CardType.Cities}
+                  />
                 </div>
               </section>
               <div className="cities__right-section">
@@ -81,4 +83,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default MainPage;

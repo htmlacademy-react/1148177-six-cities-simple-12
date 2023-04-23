@@ -1,5 +1,5 @@
 import { City } from '../../types/const';
-import CityItem from '../city-item';
+import CityItem from '../city-item/city-item';
 
 function CitiesList(): JSX.Element {
   return (

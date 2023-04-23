@@ -1,4 +1,4 @@
-import './index.css';
+import './loading.css';
 
 function Loading(): JSX.Element {
   return (

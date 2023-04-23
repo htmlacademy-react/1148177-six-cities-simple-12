@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { AppRoute } from '../../types/const';
-import Layout from '../../components/layout';
+import Layout from '../../components/layout/layout';
 
-function NotFound(): JSX.Element {
+function NotFoundPage(): JSX.Element {
   return (
     <Layout className="page--gray page--main">
       <Helmet>
@@ -32,4 +32,4 @@ function NotFound(): JSX.Element {
   );
 }
 
-export default NotFound;
+export default NotFoundPage;

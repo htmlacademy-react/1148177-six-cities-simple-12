@@ -1,6 +1,6 @@
 import { CardType } from '../../types/const';
 import { OfferItem } from '../../types/offers';
-import OffersList from '../offers-list';
+import OffersList from '../offers-list/offers-list';
 
 type NearPlacesProps = {
   offers: OfferItem[];

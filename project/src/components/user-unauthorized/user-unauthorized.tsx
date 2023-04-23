@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../types/const';
+import { AppRoute } from '../../types/const';
 
 function UserUnauthorized(): JSX.Element {
   return (

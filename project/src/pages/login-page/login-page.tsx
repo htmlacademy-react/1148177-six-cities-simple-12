@@ -1,12 +1,12 @@
 import { Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import LoginForm from '../../login-form';
-import Layout from '../../components/layout';
+import LoginForm from '../../login-form/login-form';
+import Layout from '../../components/layout/layout';
 import { useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../types/const';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
-function Login() {
+function LoginPage() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
@@ -34,4 +34,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;

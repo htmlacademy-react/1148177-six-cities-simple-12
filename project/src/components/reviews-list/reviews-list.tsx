@@ -1,8 +1,8 @@
 import { useAppSelector } from '../../hooks';
 import { getIsAuthorized } from '../../store/user-process/selectors';
 import { Review } from '../../types/reviews';
-import ReviewForm from '../review-form';
-import ReviewItem from '../review-item';
+import ReviewForm from '../review-form/review-form';
+import ReviewItem from '../review-item/review-item';
 
 type ReviewsListProps = {
   reviews: Review[];

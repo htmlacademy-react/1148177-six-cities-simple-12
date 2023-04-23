@@ -3,15 +3,15 @@ import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { firstLetterUpper, getRating } from '../../utils/funcs';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import Map from '../../components/map';
-import Layout from '../../components/layout';
-import Loading from '../../components/loading';
-import NearPlaces from '../../components/near-places';
-import RoomGallery from '../../components/room-gallery';
-import InsideGoods from '../../components/inside-goods';
-import PropertyHost from '../../components/property-host';
-import ReviewsList from '../../components/reviews-list';
-import NotFound from '../not-found';
+import Map from '../../components/map/map';
+import Layout from '../../components/layout/layout';
+import Loading from '../../components/loading/loading';
+import NearPlaces from '../../components/near-places/near-places';
+import RoomGallery from '../../components/room-gallery/room-gallery';
+import InsideGoods from '../../components/inside-goods/inside-goods';
+import PropertyHost from '../../components/property-host/property-host';
+import ReviewsList from '../../components/reviews-list/reviews-list';
+import NotFound from '../not-found-page/not-found-page';
 import {
   getNearOffers,
   getOffer,

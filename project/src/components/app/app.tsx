@@ -1,13 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import HistoryRouter from '../history-router/history-router';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import LoginPage from '../../pages/login-page/login-page';
+import OfferPage from '../../pages/offer-page/offer-page';
+import Main from '../../pages/main-page/main-page';
 import browserHistory from '../../browser-history';
-import HistoryRouter from '../history-router';
-import NotFound from '../../pages/not-found';
 import { AppRoute } from '../../types/const';
-import OfferPage from '../../pages/offer';
-import Login from '../../pages/login';
-import Main from '../../pages/main';
-
 
 function App(): JSX.Element {
   return (
@@ -15,9 +14,9 @@ function App(): JSX.Element {
       <HistoryRouter history={browserHistory}>
         <Routes>
           <Route index element={<Main />} />
-          <Route path={AppRoute.Login} element={<Login />} />
+          <Route path={AppRoute.Login} element={<LoginPage />} />
           <Route path={AppRoute.Offer} element={<OfferPage />} />
-          <Route path={AppRoute.NotFound} element={<NotFound />} />
+          <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
         </Routes>
       </HistoryRouter>
     </HelmetProvider>
