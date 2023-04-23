@@ -84,7 +84,7 @@ function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
                 title={evaluation}
               >
                 <svg className="form__star-image" width="37" height="33">
-                  <use xlinkHref="#icon-star"></use>
+                  <use xlinkHref="#icon-star" />
                 </svg>
               </label>
             </Fragment>

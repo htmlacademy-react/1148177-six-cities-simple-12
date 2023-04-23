@@ -6,7 +6,7 @@ import { useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../types/const';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
-export default function Login() {
+function Login() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
@@ -33,3 +33,5 @@ export default function Login() {
     </Layout>
   );
 }
+
+export default Login;

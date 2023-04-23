@@ -18,4 +18,5 @@ function InsideGoods({ offer: { goods } }: InsideGoodsProps): JSX.Element {
     </div>
   );
 }
+
 export default InsideGoods;

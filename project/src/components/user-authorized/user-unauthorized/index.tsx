@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../types/const';
 
-export default function UserUnauthorized(): JSX.Element {
+function UserUnauthorized(): JSX.Element {
   return (
     <li className="header__nav-item user">
       <Link
@@ -14,3 +14,5 @@ export default function UserUnauthorized(): JSX.Element {
     </li>
   );
 }
+
+export default UserUnauthorized;

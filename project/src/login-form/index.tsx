@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-
-import { useAppDispatch } from '../hooks';
 import { loginAction } from '../store/user-process/api-actions';
+import { useAppDispatch } from '../hooks';
 
 const LOGIN_FIELDS: Record<string, string> = {
   email: 'E-mail',
@@ -12,9 +11,11 @@ type Field = {
   value: string;
   error: boolean;
   regExp: RegExp;
+  errorMessage: string;
+  touched: boolean;
 };
 
-export default function LoginForm(): JSX.Element {
+function LoginForm(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState<Record<string, Field>>({
@@ -22,11 +23,15 @@ export default function LoginForm(): JSX.Element {
       value: '',
       error: false,
       regExp: /^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/,
+      errorMessage: 'Incorrect Email address',
+      touched: false,
     },
     password: {
       value: '',
       error: false,
       regExp: /([0-9].*[a-z])|([a-z].*[0-9])/,
+      errorMessage: 'At least one letter and one number',
+      touched: false,
     },
   });
 
@@ -36,7 +41,7 @@ export default function LoginForm(): JSX.Element {
     const isValid = formData[name].regExp.test(value);
     setFormData({
       ...formData,
-      [name]: { ...formData[name], error: isValid, value },
+      [name]: { ...formData[name], error: isValid, touched: true, value },
     });
   };
 
@@ -72,6 +77,17 @@ export default function LoginForm(): JSX.Element {
               onChange={handleInputChange}
               required
             />
+            {!formData[name].error && formData[name].touched && (
+              <div
+                style={{
+                  color: 'red',
+                  marginTop: '-20px',
+                  marginBottom: '20px',
+                }}
+              >
+                {formData[name].errorMessage}
+              </div>
+            )}
           </div>
         ))}
 
@@ -86,3 +102,5 @@ export default function LoginForm(): JSX.Element {
     </section>
   );
 }
+
+export default LoginForm;

@@ -28,7 +28,7 @@ function UserAuthorized(): JSX.Element {
       </li>
       <li className="header__nav-item">
         <Link
-          to="#/"
+          to="/"
           className="header__nav-link"
           onClick={(event: MouseEvent) => {
             event.preventDefault();

@@ -3,7 +3,7 @@ import { getIsAuthorized } from '../../store/user-process/selectors';
 import UserUnauthorized from '../user-authorized/user-unauthorized';
 import UserAuthorized from '../user-authorized';
 
-export default function UserNavigation(): JSX.Element {
+function UserNavigation(): JSX.Element {
   const isAuth = useAppSelector(getIsAuthorized);
 
   return (
@@ -14,3 +14,5 @@ export default function UserNavigation(): JSX.Element {
     </nav>
   );
 }
+
+export default UserNavigation;

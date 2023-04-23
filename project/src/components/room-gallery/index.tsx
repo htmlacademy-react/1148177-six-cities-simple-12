@@ -12,11 +12,7 @@ function RoomGallery({ offer }: PropertyGalleryProps) {
       <div className="property__gallery">
         {galleryImages.map((image) => (
           <div className="property__image-wrapper" key={image}>
-            <img
-              className="property__image"
-              src={image}
-              alt={offer.title}
-            />
+            <img className="property__image" src={image} alt={offer.title} />
           </div>
         ))}
       </div>
