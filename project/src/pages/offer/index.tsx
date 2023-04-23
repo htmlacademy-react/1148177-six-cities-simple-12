@@ -5,13 +5,13 @@ import { firstLetterUpper, getRating } from '../../utils/funcs';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Map from '../../components/map';
 import Layout from '../../components/layout';
+import Loading from '../../components/loading';
 import NearPlaces from '../../components/near-places';
 import RoomGallery from '../../components/room-gallery';
 import InsideGoods from '../../components/inside-goods';
 import PropertyHost from '../../components/property-host';
 import ReviewsList from '../../components/reviews-list';
 import NotFound from '../not-found';
-import Loading from '../loading';
 import {
   getNearOffers,
   getOffer,

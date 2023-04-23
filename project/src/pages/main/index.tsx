@@ -7,6 +7,7 @@ import { emptyClass, getCurrentOffers } from '../../utils/funcs';
 import Map from '../../components/map';
 import Sort from '../../components/sort';
 import Layout from '../../components/layout';
+import Loading from '../../components/loading';
 import MainEmpty from '../../components/main-empty';
 import CitiesList from '../../components/cities-list';
 import OffersList from '../../components/offers-list';
@@ -19,7 +20,6 @@ import {
 } from '../../store/app-process/selectors';
 import { getOffersStatus, getOffers } from '../../store/offers-data/selectors';
 
-import Loading from '../loading';
 
 function Main() {
   const offers = useAppSelector(getOffers);
