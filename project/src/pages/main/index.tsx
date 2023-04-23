@@ -59,7 +59,7 @@ function Main() {
                 </b>
                 <Sort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={offers} cardType={CardType.Cities} />
+                  <OffersList offers={currentOffers} cardType={CardType.Cities} />
                 </div>
               </section>
               <div className="cities__right-section">
