@@ -18,6 +18,7 @@ function UserAuthorized(): JSX.Element {
               width="20"
               height="20"
               alt={userData?.name}
+              style={{ borderRadius: '50%' }}
             />
           </div>
           <span className="header__user-name user__name">
