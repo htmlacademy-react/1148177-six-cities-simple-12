@@ -13,6 +13,7 @@ export const fetchOffersAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('data/fetchOffers', async (_arg, { extra: api }) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const { data } = await api.get<Offers>(APIRoute.Offers);
     return data;
