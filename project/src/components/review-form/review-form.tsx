@@ -1,8 +1,8 @@
-import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useEffect, useState } from 'react';
+import { getReviewFormBlockedStatus } from '../../store/offer-data/selectors';
+import { sendReviewAction } from '../../store/offer-data/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { RATING_TYPES } from '../../types/const';
-import { sendReviewAction } from '../../store/offer-data/api-actions';
-import { getReviewFormBlockedStatus } from '../../store/offer-data/selectors';
 
 enum ReviewLength {
   Min = 50,
@@ -26,6 +26,19 @@ function ReviewForm({ offerId }: ReviewFormProps): JSX.Element {
     rating: '',
     review: '',
   });
+
+  const resetForm = () => {
+    setFormData({
+      rating: '',
+      review: '',
+    });
+  };
+
+  useEffect(() => {
+    if (reviewFormStatus.isSuccess) {
+      resetForm();
+    }
+  }, [reviewFormStatus]);
 
   const handleFieldChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
