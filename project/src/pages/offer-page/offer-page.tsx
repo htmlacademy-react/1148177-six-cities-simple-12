@@ -13,15 +13,15 @@ import PropertyHost from '../../components/property-host/property-host';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import NotFound from '../not-found-page/not-found-page';
 import {
-  getNearOffers,
   getOffer,
+  getNearOffers,
+  getSortedReviews,
   getOfferPropertyStatus,
-  getReviews,
 } from '../../store/offer-data/selectors';
 import {
-  fetchNearOffersAction,
   fetchOfferAction,
   fetchReviewAction,
+  fetchNearOffersAction,
 } from '../../store/offer-data/api-actions';
 
 function OfferPage() {
@@ -36,7 +36,7 @@ function OfferPage() {
   }, [dispatch, offerId]);
 
   const offer = useAppSelector(getOffer);
-  const reviews = useAppSelector(getReviews);
+  const reviews = useAppSelector(getSortedReviews);
   const nearOffers = useAppSelector(getNearOffers);
   const offerPropertyStatus = useAppSelector(getOfferPropertyStatus);
 

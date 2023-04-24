@@ -1,5 +1,6 @@
-import { City, SortType } from '../types/const';
 import { OfferItem, Offers } from '../types/offers';
+import { City, SortType } from '../types/const';
+import { Reviews } from '../types/reviews';
 
 function emptyClass(offers: Array<OfferItem>) {
   const className = 'page__main page__main--index';
@@ -16,6 +17,10 @@ function formatDate(date: string, locales = 'en-US') {
     month: 'long',
     year: 'numeric',
   });
+}
+
+function sortReviews(reviews: Reviews) {
+  return [...reviews].sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 }
 
 function getOffersByCity(city: string, offers: Offers) {
@@ -46,10 +51,11 @@ function getRating(rating: number): number {
 }
 
 export {
-  emptyClass,
-  firstLetterUpper,
-  formatDate,
-  getOffersByCity,
   getCurrentOffers,
+  firstLetterUpper,
+  getOffersByCity,
+  sortReviews,
+  emptyClass,
+  formatDate,
   getRating,
 };
