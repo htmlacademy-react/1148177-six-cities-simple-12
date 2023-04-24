@@ -5,11 +5,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { store } from './store';
-import { checkAuthAction, fetchOffersAction } from './store/api-actions';
-import App from './components/app/app';
 
-store.dispatch(fetchOffersAction());
-store.dispatch(checkAuthAction());
+import App from './components/app/app';
+import NotificationToast from './components/notification-toast/notification-toast';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,6 +17,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ToastContainer />
+      <NotificationToast />
       <App />
     </Provider>
   </React.StrictMode>

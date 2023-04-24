@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.loading {
+  margin-top: 0;
+  margin-bottom: 7px;
+  padding: 0 28px;
+  font-size: 38px;
+  line-height: 1.21053;
+  font-weight: 700;
+  font-style: oblique;
+  text-align: center;
+}

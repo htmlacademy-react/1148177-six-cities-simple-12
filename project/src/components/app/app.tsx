@@ -1,34 +1,22 @@
 import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-
-import { AppRoute, AuthorizationStatus } from '../../types/const';
-import OfferPage from '../../pages/offer';
-import Login from '../../pages/login';
-import NotFound from '../../pages/not-found';
-import Main from '../../pages/main';
-import HistoryRouter from '../history-router';
+import HistoryRouter from '../history-router/history-router';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import LoginPage from '../../pages/login-page/login-page';
+import OfferPage from '../../pages/offer-page/offer-page';
+import Main from '../../pages/main-page/main-page';
 import browserHistory from '../../browser-history';
-import { useAppSelector } from '../../hooks';
-import Loading from '../../pages/loading';
+import { AppRoute } from '../../types/const';
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus
-  );
-  const isDataLoading = useAppSelector((state) => state.isDataLoading);
-
-  if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
-    return <Loading />;
-  }
-
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
         <Routes>
           <Route index element={<Main />} />
-          <Route path={AppRoute.Login} element={<Login />} />
+          <Route path={AppRoute.Login} element={<LoginPage />} />
           <Route path={AppRoute.Offer} element={<OfferPage />} />
-          <Route path={AppRoute.NotFound} element={<NotFound />} />
+          <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
         </Routes>
       </HistoryRouter>
     </HelmetProvider>
