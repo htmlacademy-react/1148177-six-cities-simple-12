@@ -18,7 +18,7 @@ export const appProcess = createSlice({
   name: NameSpace.App,
   initialState,
   reducers: {
-    changeLocation: (state, action: PayloadAction<City>) => {
+    changeCity: (state, action: PayloadAction<City>) => {
       state.city = action.payload;
     },
     changeSort: (state, action: PayloadAction<SortType>) => {
@@ -30,4 +30,4 @@ export const appProcess = createSlice({
   },
 });
 
-export const { changeLocation, changeSort, selectOffer } = appProcess.actions;
+export const { changeCity, changeSort, selectOffer } = appProcess.actions;

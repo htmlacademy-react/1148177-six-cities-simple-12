@@ -12,12 +12,7 @@ export const fetchOffersAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('data/fetchOffers', async (_arg, { extra: api }) => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const { data } = await api.get<Offers>(APIRoute.Offers);
-    return data;
-  } catch (err) {
-    throw err;
-  }
-});
+>(
+  'data/fetchOffers',
+  async (_arg, { extra: api }) => (await api.get<Offers>(APIRoute.Offers)).data
+);

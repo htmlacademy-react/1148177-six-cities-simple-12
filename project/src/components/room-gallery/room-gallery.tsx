@@ -1,16 +1,15 @@
 import { Offer } from '../../types/offers';
+import { galleryImages } from '../../utils/funcs';
 
 type PropertyGalleryProps = {
   offer: Offer;
 };
 
 function RoomGallery({ offer }: PropertyGalleryProps) {
-  const galleryImages = offer.images.slice(0, 6);
-
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">
-        {galleryImages.map((image) => (
+        {galleryImages(offer).map((image) => (
           <div className="property__image-wrapper" key={image}>
             <img className="property__image" src={image} alt={offer.title} />
           </div>
