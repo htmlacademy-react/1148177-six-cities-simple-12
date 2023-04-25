@@ -94,7 +94,7 @@ function LoginForm(): JSX.Element {
         <button
           className="login__submit form__submit button"
           type="submit"
-          disabled={!formData.email.error && !formData.password.error}
+          disabled={!(formData.email.error && formData.password.error)}
         >
           Sign in
         </button>

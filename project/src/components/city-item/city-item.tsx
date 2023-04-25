@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { City } from '../../types/const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCity } from '../../store/app-process/selectors';
-import { changeLocation } from '../../store/app-process/app-process';
+import { changeCity } from '../../store/app-process/app-process';
 
 type CityItemProps = {
   city: City;
@@ -22,7 +22,7 @@ function CityItem({ city }: CityItemProps): JSX.Element {
         to="/"
         onClick={(event) => {
           event.preventDefault();
-          dispatch(changeLocation(city));
+          dispatch(changeCity(city));
         }}
       >
         <span>{city}</span>

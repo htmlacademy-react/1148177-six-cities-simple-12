@@ -1,6 +1,7 @@
 import { useAppSelector } from '../../hooks';
 import { getIsAuthorized } from '../../store/user-process/selectors';
 import { Review } from '../../types/reviews';
+import { viewReviewsCount } from '../../utils/funcs';
 import ReviewForm from '../review-form/review-form';
 import ReviewItem from '../review-item/review-item';
 
@@ -20,7 +21,7 @@ function ReviewsList({ reviews, offerId }: ReviewsListProps): JSX.Element {
       </h2>
       <ul className="reviews__list">
         {reviews &&
-          reviews.map((review) => (
+          viewReviewsCount(reviews).map((review) => (
             <ReviewItem key={review.id} review={review} />
           ))}
       </ul>

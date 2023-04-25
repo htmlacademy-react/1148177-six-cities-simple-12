@@ -32,9 +32,10 @@ export const RATING_TYPES: string[] = [
   'terribly',
 ];
 
-
-export const DEFAULT_CUSTOM_ICON = './img/pin.svg';
-export const CURRENT_CUSTOM_ICON = '/img/pin-active.svg';
+export enum IconType {
+  Default = './img/pin.svg',
+  Current = '/img/pin-active.svg',
+}
 
 export enum SortType {
   Popular = 'Popular',

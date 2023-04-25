@@ -39,5 +39,5 @@ export const getReviewFormBlockedStatus = createSelector(
 );
 
 export const getSortedReviews = createSelector(getReviews, (reviews) =>
-  sortReviews(reviews).slice(0, 10)
+  sortReviews(reviews)
 );

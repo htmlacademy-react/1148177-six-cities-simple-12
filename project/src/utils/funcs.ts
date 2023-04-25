@@ -1,4 +1,4 @@
-import { OfferItem, Offers } from '../types/offers';
+import { Offer, OfferItem, Offers } from '../types/offers';
 import { City, SortType } from '../types/const';
 import { Reviews } from '../types/reviews';
 
@@ -21,6 +21,12 @@ function formatDate(date: string, locales = 'en-US') {
 
 function sortReviews(reviews: Reviews) {
   return [...reviews].sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+}
+
+const VIEW_REVIEWS_COUNT = 10;
+
+function viewReviewsCount(reviews: Reviews) {
+  return reviews.slice(0, VIEW_REVIEWS_COUNT);
 }
 
 function getOffersByCity(city: string, offers: Offers) {
@@ -50,12 +56,32 @@ function getRating(rating: number): number {
   return (Math.round(rating) * 100) / 5;
 }
 
+const GALLERY_IMAGES_COUNT = 6;
+
+function galleryImages(offer: Offer) {
+  return offer.images.slice(0, GALLERY_IMAGES_COUNT);
+}
+
+const NEAR_PLACES_COUNT = 3;
+
+function nearPlaces(offers: Offers) {
+  return offers.slice(0, NEAR_PLACES_COUNT);
+}
+
+function getRandom(max: number): number {
+  return Math.floor(Math.random() * (Math.floor(max) - 1));
+}
+
 export {
   getCurrentOffers,
   firstLetterUpper,
+  viewReviewsCount,
   getOffersByCity,
+  galleryImages,
   sortReviews,
+  nearPlaces,
   emptyClass,
   formatDate,
   getRating,
+  getRandom,
 };

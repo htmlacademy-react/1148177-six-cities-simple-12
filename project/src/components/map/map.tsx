@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 
 import useMap from '../../hooks/useMap';
 import { Offer, OfferId } from '../../types/offers';
-import { CURRENT_CUSTOM_ICON, DEFAULT_CUSTOM_ICON } from '../../types/const';
+import { IconType } from '../../types/const';
 
 type MapProps = {
   offers: Offer[];
@@ -15,14 +15,14 @@ type MapProps = {
 };
 
 const defaultCustomIcon = new Icon({
-  iconUrl: DEFAULT_CUSTOM_ICON,
+  iconUrl: IconType.Default,
   iconSize: [28, 40],
   iconAnchor: [14, 40],
   style: { color: 'red' },
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: CURRENT_CUSTOM_ICON,
+  iconUrl: IconType.Current,
   iconSize: [28, 40],
   iconAnchor: [14, 40],
 });
